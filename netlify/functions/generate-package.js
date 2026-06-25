@@ -39,7 +39,7 @@ Include exactly 3 hotels (Budget, Mid-range, Luxury), 4 food spots, a 3-day itin
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`,
+        'Authorization': `Bearer ${process.env.deepseek_api_key}`,
       },
       body: JSON.stringify({
         model: 'deepseek-chat',
