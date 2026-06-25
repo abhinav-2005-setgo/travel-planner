@@ -35,26 +35,27 @@ Respond ONLY in valid JSON, no markdown, no preamble, no code fences. Schema:
 
 Include exactly 3 hotels (Budget, Mid-range, Luxury), 4 food spots, a 3-day itinerary, and 3 travel tips. Be specific and realistic.`
 
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.7 }
-        }),
-      }
-    )
+    const deepseekRes = await fetch('https://api.deepseek.com/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.7,
+      }),
+    })
 
-    if (!geminiRes.ok) {
-      const errText = await geminiRes.text()
-      console.error('Gemini API error:', errText)
+    if (!deepseekRes.ok) {
+      const errText = await deepseekRes.text()
+      console.error('DeepSeek API error:', errText)
       return new Response(JSON.stringify({ error: 'Failed to generate package' }), { status: 502 })
     }
 
-    const data = await geminiRes.json()
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || ''
+    const data = await deepseekRes.json()
+    const text = data.choices?.[0]?.message?.content || ''
     const clean = text.replace(/```json|```/g, '').trim()
     const pkg = JSON.parse(clean)
 
