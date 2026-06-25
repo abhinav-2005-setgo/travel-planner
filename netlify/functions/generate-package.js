@@ -36,7 +36,7 @@ Respond ONLY in valid JSON, no markdown, no preamble, no code fences. Schema:
 Include exactly 3 hotels (Budget, Mid-range, Luxury), 4 food spots, a 3-day itinerary, and 3 travel tips. Be specific and realistic.`
 
     const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
