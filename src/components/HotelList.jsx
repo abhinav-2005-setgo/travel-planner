@@ -1,20 +1,22 @@
-const tierColor = {
-  Budget: 'bg-moss/10 text-moss',
-  'Mid-range': 'bg-sky/10 text-sky',
-  Luxury: 'bg-terracotta/10 text-terracotta',
+const tierStyle = {
+  Budget: 'bg-emerald-900/30 text-emerald-400 border border-emerald-800/40',
+  'Mid-range': 'bg-blue-900/30 text-blue-400 border border-blue-800/40',
+  Luxury: 'bg-gold/10 text-gold border border-gold/20',
 }
 
 export default function HotelList({ hotels }) {
   return (
     <div className="grid sm:grid-cols-3 gap-4">
-      {hotels.map((h) => (
-        <div key={h.name} className="bg-white border border-ink/10 rounded-2xl p-5 flex flex-col gap-2">
-          <span className={`inline-block w-fit text-[11px] font-body font-medium px-2.5 py-1 rounded-full ${tierColor[h.type] || 'bg-ink/10 text-ink'}`}>
+      {hotels.map((h, i) => (
+        <div key={h.name}
+          className="bg-card border border-border rounded-2xl p-5 card-hover animate-fade-up"
+          style={{ animationDelay: `${i * 0.1}s` }}>
+          <span className={`inline-block text-[11px] font-body font-medium px-3 py-1 rounded-full ${tierStyle[h.type] || 'bg-muted/20 text-muted'}`}>
             {h.type}
           </span>
-          <h4 className="font-display text-lg leading-snug text-ink">{h.name}</h4>
-          <p className="text-sm text-ink/60 font-body leading-relaxed">{h.highlight}</p>
-          <p className="text-sm font-body font-medium text-ink mt-auto pt-2">{h.price}</p>
+          <h4 className="font-display text-xl text-cream mt-3 leading-snug">{h.name}</h4>
+          <p className="text-sm font-body text-muted mt-2 leading-relaxed">{h.highlight}</p>
+          <p className="text-sm font-body font-semibold text-gold mt-4">{h.price}</p>
         </div>
       ))}
     </div>

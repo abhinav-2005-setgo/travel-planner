@@ -2,11 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: #F6F1E7;
-  color: #1B2430;
+  background-color: #0A0A0F;
+  color: #F5F0E8;
+  font-family: 'DM Sans', sans-serif;
 }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-up { animation: fadeUp 0.7s ease forwards; }
+.animate-fade-in { animation: fadeIn 0.5s ease forwards; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+.delay-100 { animation-delay: 0.1s; opacity: 0; }
+.delay-200 { animation-delay: 0.2s; opacity: 0; }
+.delay-300 { animation-delay: 0.3s; opacity: 0; }
+.delay-400 { animation-delay: 0.4s; opacity: 0; }
+.delay-500 { animation-delay: 0.5s; opacity: 0; }
+
+.gold-shimmer {
+  background: linear-gradient(90deg, #C9A84C 0%, #E8C96A 40%, #C9A84C 60%, #E8C96A 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+.card-hover {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: #C9A84C40;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #C9A84C, #E8C96A);
+  transition: all 0.3s ease;
+}
+.btn-gold:hover {
+  background: linear-gradient(135deg, #E8C96A, #C9A84C);
+  box-shadow: 0 0 20px rgba(201,168,76,0.4);
+  transform: translateY(-1px);
+}
+
+.hero-bg {
+  background: radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 50%),
+              #0A0A0F;
+}
+
+.input-dark {
+  background: #1A1A24;
+  border: 1px solid #2A2A3A;
+  color: #F5F0E8;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.input-dark:focus {
+  outline: none;
+  border-color: #C9A84C60;
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+}
+.input-dark::placeholder { color: #8888A0; }
